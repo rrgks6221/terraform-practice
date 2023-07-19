@@ -18,3 +18,9 @@ module "ec2_public" {
   ec2_security_group_id   = module.ec2_security_group.ec2_security_group_id
   ec2_security_group_name = module.ec2_security_group.ec2_security_group_name
 }
+
+module "rds_main" {
+  source = "./modules/rds"
+
+  security_group_id = module.ec2_security_group.rds_security_group_id
+}
