@@ -23,4 +23,5 @@ module "rds_main" {
   source = "./modules/rds"
 
   security_group_id = module.ec2_security_group.rds_security_group_id
+  subnet_group_name = module.vpc_main.db_subnet_group_name
 }
