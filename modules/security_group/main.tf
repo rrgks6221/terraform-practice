@@ -4,6 +4,7 @@ locals {
   ssh_port      = 22
   any_port      = 0
   postgres_port = 5432
+  was_port      = 3000
 
   tcp_protocol = "tcp"
   any_protocol = "-1"
@@ -19,6 +20,18 @@ resource "aws_security_group" "ec2_sg" {
   tags = {
     Name = "ec2 security group"
   }
+}
+
+resource "aws_security_group_rule" "ec2_was" {
+  type              = "ingress"
+  security_group_id = aws_security_group.ec2_sg.id
+
+  from_port   = local.was_port
+  to_port     = local.was_port
+  protocol    = local.tcp_protocol
+  cidr_blocks = local.all_ips
+
+  description = "ec2_was"
 }
 
 resource "aws_security_group_rule" "allow_http_inbound" {
