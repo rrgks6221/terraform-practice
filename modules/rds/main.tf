@@ -1,5 +1,5 @@
 resource "aws_db_instance" "main" {
-  identifier            = "terraform-practice2"
+  identifier            = var.app_name_dash
   db_name               = "init_db"
   allocated_storage     = 20
   max_allocated_storage = 22
@@ -20,6 +20,6 @@ resource "aws_db_instance" "main" {
 
 
   tags = {
-    "Name" = "main-database"
+    "Name" = "${var.app_name_dash}-main-database"
   }
 }
