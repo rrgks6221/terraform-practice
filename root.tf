@@ -1,3 +1,8 @@
+locals {
+  app_name_dash     = replace(var.app_name, " ", "-")
+  app_name_underbar = replace(var.app_name, " ", "_")
+}
+
 module "vpc_main" {
   source = "./modules/vpc"
 
@@ -14,6 +19,8 @@ module "ec2_security_group" {
 module "ec2_public" {
   source = "./modules/ec2"
 
+  app_name_dash           = local.app_name_dash
+  app_name_underbar       = local.app_name_underbar
   public_subnet_ids       = module.vpc_main.public_subnet_ids
   ec2_security_group_id   = module.ec2_security_group.ec2_security_group_id
   ec2_security_group_name = module.ec2_security_group.ec2_security_group_name

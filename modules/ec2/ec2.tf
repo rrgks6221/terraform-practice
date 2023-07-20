@@ -2,7 +2,7 @@ resource "aws_eip" "ec2_eip" {
 
 }
 
-resource "aws_instance" "terraform_practice" {
+resource "aws_instance" "free_tier" {
   # ubuntu v22
   ami                    = "ami-0c9c942bd7bf113a2"
   key_name               = aws_key_pair.key_pair.key_name
@@ -16,11 +16,11 @@ resource "aws_instance" "terraform_practice" {
   }
 
   tags = {
-    "Name" = "terraform-practice-public-ec2"
+    "Name" = "${var.app_name_dash}-public-ec2"
   }
 }
 
 resource "aws_eip_association" "ec2_eip_association" {
   allocation_id = aws_eip.ec2_eip.id
-  instance_id   = aws_instance.terraform_practice.id
+  instance_id   = aws_instance.free_tier.id
 }
