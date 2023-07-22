@@ -7,7 +7,7 @@ resource "aws_instance" "free_tier" {
   ami                    = "ami-0c9c942bd7bf113a2"
   key_name               = aws_key_pair.key_pair.key_name
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [var.ec2_security_group_id]
+  vpc_security_group_ids = [aws_security_group.ec2_free_tier.id]
   subnet_id              = var.public_subnet_ids[0]
 
   ebs_block_device {

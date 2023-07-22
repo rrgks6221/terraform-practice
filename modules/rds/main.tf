@@ -15,7 +15,7 @@ resource "aws_db_instance" "main" {
   skip_final_snapshot     = true
   backup_retention_period = 7
 
-  vpc_security_group_ids = [var.security_group_id]
+  vpc_security_group_ids = [aws_security_group.rds.id]
   db_subnet_group_name   = var.subnet_group_name
 
 

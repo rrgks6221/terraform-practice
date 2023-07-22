@@ -10,26 +10,19 @@ module "vpc_main" {
   vpc_cidr       = var.vpc_cidr
 }
 
-module "ec2_security_group" {
-  source = "./modules/security_group"
-
-  vpc_id = module.vpc_main.vpc_id
-}
-
 module "ec2_public" {
   source = "./modules/ec2"
 
-  app_name_dash           = local.app_name_dash
-  app_name_underbar       = local.app_name_underbar
-  public_subnet_ids       = module.vpc_main.public_subnet_ids
-  ec2_security_group_id   = module.ec2_security_group.ec2_security_group_id
-  ec2_security_group_name = module.ec2_security_group.ec2_security_group_name
+  app_name_dash     = local.app_name_dash
+  app_name_underbar = local.app_name_underbar
+  vpc_id            = module.vpc_main.vpc_id
+  public_subnet_ids = module.vpc_main.public_subnet_ids
 }
 
 module "rds_main" {
   source = "./modules/rds"
 
-  app_name_dash = local.app_name_dash
-  security_group_id = module.ec2_security_group.rds_security_group_id
+  app_name_dash     = local.app_name_dash
+  vpc_id            = module.vpc_main.vpc_id
   subnet_group_name = module.vpc_main.db_subnet_group_name
 }
