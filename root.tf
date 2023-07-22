@@ -19,6 +19,12 @@ module "ec2_public" {
   public_subnet_ids = module.vpc_main.public_subnet_ids
 }
 
+module "route53" {
+  source = "./modules/route53"
+
+  domain = var.domain
+}
+
 module "rds_main" {
   source = "./modules/rds"
 
