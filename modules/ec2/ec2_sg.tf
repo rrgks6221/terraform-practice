@@ -51,17 +51,6 @@ resource "aws_security_group_rule" "ec2_free_tier_was_ingress" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "ec2_free_tier_tunneling_ingress" {
-  description       = "${var.app_name_dash}-ec2-free-tier-tunneling-ingress"
-  type              = "ingress"
-  security_group_id = aws_security_group.ec2_free_tier.id
-
-  from_port   = 13306
-  to_port     = 13306
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
-
 resource "aws_security_group_rule" "all_egress" {
   description       = "${var.app_name_dash}-all-egress"
   type              = "egress"

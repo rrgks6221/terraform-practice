@@ -34,4 +34,5 @@ module "rds_main" {
   app_name_dash     = local.app_name_dash
   vpc_id            = module.vpc_main.vpc_id
   subnet_group_name = module.vpc_main.db_subnet_group_name
+  ec2_tunneling_ip  = module.ec2_public.ec2_private_ip
 }

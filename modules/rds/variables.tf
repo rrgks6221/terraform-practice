@@ -9,3 +9,7 @@ variable "subnet_group_name" {
 variable "vpc_id" {
   type = string
 }
+
+variable "ec2_tunneling_ip" {
+  type = string
+}
