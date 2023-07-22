@@ -23,6 +23,9 @@ module "route53" {
   source = "./modules/route53"
 
   domain = var.domain
+  ec2_eip = {
+    public_ip = module.ec2_public.ec2_eip.public_ip
+  }
 }
 
 module "rds_main" {
