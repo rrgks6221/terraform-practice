@@ -26,6 +26,7 @@ module "route53" {
   ec2_eip = {
     public_ip = module.ec2_public.ec2_eip.public_ip
   }
+  rds_endpoint = module.rds_main.rds_endpoint
 }
 
 module "rds_main" {

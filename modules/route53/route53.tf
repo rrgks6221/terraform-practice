@@ -13,3 +13,12 @@ resource "aws_route53_record" "api_aws_practice_shop" {
 
   records = [var.ec2_eip.public_ip]
 }
+
+resource "aws_route53_record" "rds_aws_practice_shop" {
+  zone_id = aws_route53_zone.awspractice_shop.id
+  name    = "rds.${var.domain}"
+  type    = "CNAME"
+  ttl     = 300
+
+  records = [var.rds_endpoint]
+}

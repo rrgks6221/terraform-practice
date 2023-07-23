@@ -7,3 +7,7 @@ variable "ec2_eip" {
     public_ip = string
   })
 }
+
+variable "rds_endpoint" {
+  type = string
+}
