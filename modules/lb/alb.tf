@@ -11,3 +11,14 @@ resource "aws_lb" "external" {
     "Name" = "${var.app_name_dash}-external-lb"
   }
 }
+
+resource "aws_lb_target_group" "external" {
+  name     = "${var.app_name_dash}-ex-lb-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+
+  tags = {
+    "Name" = "${var.app_name_dash}-external-lb-target-group"
+  }
+}
