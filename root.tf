@@ -46,3 +46,10 @@ module "external_lb" {
   vpc_cidr          = var.vpc_cidr
   public_subnet_ids = module.vpc_main.public_subnet_ids
 }
+
+module "acm" {
+  source = "./modules/acm"
+
+  domain        = var.domain
+  app_name_dash = local.app_name_dash
+}
