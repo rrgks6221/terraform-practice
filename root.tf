@@ -37,3 +37,11 @@ module "rds_main" {
   subnet_group_name = module.vpc_main.db_subnet_group_name
   ec2_tunneling_ip  = module.ec2_public.ec2_private_ip
 }
+
+module "external_lb" {
+  source = "./modules/lb"
+
+  app_name_dash = local.app_name_dash
+  vpc_id        = module.vpc_main.vpc_id
+  vpc_cidr      = var.vpc_cidr
+}
