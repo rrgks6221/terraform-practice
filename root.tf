@@ -27,6 +27,10 @@ module "route53" {
     public_ip = module.ec2_public.ec2_eip.public_ip
   }
   rds_endpoint = module.rds_main.rds_endpoint
+  lb = {
+    dns_name = module.external_lb.dns_name
+    zone_id  = module.external_lb.zone_id
+  }
 }
 
 module "rds_main" {
@@ -41,10 +45,11 @@ module "rds_main" {
 module "external_lb" {
   source = "./modules/lb"
 
-  app_name_dash     = local.app_name_dash
-  vpc_id            = module.vpc_main.vpc_id
-  vpc_cidr          = var.vpc_cidr
-  public_subnet_ids = module.vpc_main.public_subnet_ids
+  app_name_dash                    = local.app_name_dash
+  vpc_id                           = module.vpc_main.vpc_id
+  vpc_cidr                         = var.vpc_cidr
+  public_subnet_ids                = module.vpc_main.public_subnet_ids
+  acm_external_ssl_certificate_arn = module.acm.certificate_arn
 }
 
 module "acm" {
@@ -52,4 +57,5 @@ module "acm" {
 
   domain        = var.domain
   app_name_dash = local.app_name_dash
+  cert_fqdn     = module.route53.lb_fqdns
 }

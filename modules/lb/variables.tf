@@ -13,3 +13,7 @@ variable "vpc_cidr" {
 variable "public_subnet_ids" {
   type = list(string)
 }
+
+variable "acm_external_ssl_certificate_arn" {
+  type = string
+}

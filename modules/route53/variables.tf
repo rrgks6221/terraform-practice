@@ -11,3 +11,10 @@ variable "ec2_eip" {
 variable "rds_endpoint" {
   type = string
 }
+
+variable "lb" {
+  type = object({
+    dns_name = string
+    zone_id  = string
+  })
+}
