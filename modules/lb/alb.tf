@@ -23,14 +23,25 @@ resource "aws_lb_target_group" "api" {
   }
 }
 
+resource "aws_lb_target_group_attachment" "name" {
+  target_group_arn = aws_lb_target_group.api.arn
+  target_id        = var.ec2_id
+  port             = 3000
+}
+
 resource "aws_lb_listener" "external_80" {
   load_balancer_arn = aws_lb.api.arn
   port              = "80"
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = aws_lb_target_group.api.arn
-    type             = "forward"
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 }
 
@@ -45,10 +56,4 @@ resource "aws_lb_listener" "external_443" {
     target_group_arn = aws_lb_target_group.api.arn
     type             = "forward"
   }
-}
-
-resource "aws_lb_target_group_attachment" "name" {
-  target_group_arn = aws_lb_target_group.api.arn
-  target_id        = var.ec2_id
-  port             = 3000
 }
