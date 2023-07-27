@@ -46,3 +46,9 @@ resource "aws_lb_listener" "external_443" {
     type             = "forward"
   }
 }
+
+resource "aws_lb_target_group_attachment" "name" {
+  target_group_arn = aws_lb_target_group.external.arn
+  target_id        = var.ec2_id
+  port             = 3000
+}

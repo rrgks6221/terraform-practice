@@ -50,6 +50,7 @@ module "external_lb" {
   vpc_cidr                         = var.vpc_cidr
   public_subnet_ids                = module.vpc_main.public_subnet_ids
   acm_external_ssl_certificate_arn = module.acm.certificate_arn
+  ec2_id                           = module.ec2_public.ec2_free_tier_id
 }
 
 module "acm" {

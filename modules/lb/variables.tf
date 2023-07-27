@@ -17,3 +17,7 @@ variable "public_subnet_ids" {
 variable "acm_external_ssl_certificate_arn" {
   type = string
 }
+
+variable "ec2_id" {
+  type = string
+}
