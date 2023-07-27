@@ -45,12 +45,12 @@ module "rds_main" {
 module "external_lb" {
   source = "./modules/lb"
 
-  app_name_dash                    = local.app_name_dash
-  vpc_id                           = module.vpc_main.vpc_id
-  vpc_cidr                         = var.vpc_cidr
-  public_subnet_ids                = module.vpc_main.public_subnet_ids
-  acm_external_ssl_certificate_arn = module.acm.certificate_arn
-  ec2_id                           = module.ec2_public.ec2_free_tier_id
+  app_name_dash               = local.app_name_dash
+  vpc_id                      = module.vpc_main.vpc_id
+  vpc_cidr                    = var.vpc_cidr
+  public_subnet_ids           = module.vpc_main.public_subnet_ids
+  api_awspractice_acm_ssl_arn = module.acm.api_awspractice_shop.arn
+  ec2_id                      = module.ec2_public.ec2_free_tier_id
 }
 
 module "acm" {

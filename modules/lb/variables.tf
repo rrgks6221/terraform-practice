@@ -14,7 +14,7 @@ variable "public_subnet_ids" {
   type = list(string)
 }
 
-variable "acm_external_ssl_certificate_arn" {
+variable "api_awspractice_acm_ssl_arn" {
   type = string
 }
 

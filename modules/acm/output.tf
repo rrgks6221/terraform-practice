@@ -1,3 +1,3 @@
-output "certificate_arn" {
-  value = aws_acm_certificate.awspractice_shop.arn
+output "api_awspractice_shop" {
+  value = aws_acm_certificate.api_awspractice_shop
 }
