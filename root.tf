@@ -60,3 +60,9 @@ module "acm" {
   app_name_dash = local.app_name_dash
   cert_fqdn     = module.route53.lb_fqdns
 }
+
+module "s3_main" {
+  source = "./modules/s3"
+
+  app_name_dash = local.app_name_dash
+}
