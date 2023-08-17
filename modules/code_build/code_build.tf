@@ -6,7 +6,6 @@ resource "aws_codebuild_project" "name" {
 
   service_role = aws_iam_role.code_build_role.arn
 
-
   # CodeBuild Source
   source_version = "main"
   source {

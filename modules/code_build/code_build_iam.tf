@@ -76,3 +76,8 @@ data "aws_iam_policy_document" "code_build_pd" {
     ]
   }
 }
+
+resource "aws_iam_role_policy" "example" {
+  role   = aws_iam_role.code_build_role.name
+  policy = data.aws_iam_policy_document.code_build_pd.json
+}
