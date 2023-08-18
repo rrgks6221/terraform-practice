@@ -73,3 +73,9 @@ module "code_build" {
   app_name_dash = local.app_name_dash
   s3            = module.s3_main.s3_main
 }
+
+module "ecr_main" {
+  source = "./modules/ecr"
+
+  app_name_dash = local.app_name_dash
+}
