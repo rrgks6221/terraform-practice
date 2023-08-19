@@ -33,6 +33,16 @@ data "aws_iam_policy_document" "code_build_pd" {
     effect = "Allow"
 
     actions = [
+      "ecr:GetAuthorizationToken"
+    ]
+
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
       "ec2:CreateNetworkInterface",
       "ec2:DescribeDhcpOptions",
       "ec2:DescribeNetworkInterfaces",
