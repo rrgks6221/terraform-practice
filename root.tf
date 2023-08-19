@@ -72,6 +72,7 @@ module "code_build" {
 
   app_name_dash = local.app_name_dash
   s3            = module.s3_main.s3_main
+  github_token  = var.github_token
 }
 
 module "ecr_main" {

@@ -13,3 +13,7 @@ variable "vpc_cidr" {
 variable "public_subnets" {
 
 }
+
+variable "github_token" {
+  type = string
+}

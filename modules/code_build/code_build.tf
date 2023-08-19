@@ -1,4 +1,4 @@
-resource "aws_codebuild_project" "name" {
+resource "aws_codebuild_project" "main" {
   name        = var.app_name_dash
   description = "${var.app_name_dash} code build"
 
@@ -10,7 +10,7 @@ resource "aws_codebuild_project" "name" {
   source_version = "main"
   source {
     type     = "GITHUB"
-    location = "https://github.com/rrgks6221/terraform-practice-server"
+    location = "https://github.com/rrgks6221/terraform-practice-server.git"
   }
 
   # Environment
@@ -55,4 +55,10 @@ resource "aws_codebuild_project" "name" {
     path      = "/codebuild"
     packaging = "ZIP"
   }
+}
+
+resource "aws_codebuild_source_credential" "credential" {
+  auth_type   = "PERSONAL_ACCESS_TOKEN"
+  server_type = "GITHUB"
+  token       = var.github_token
 }
