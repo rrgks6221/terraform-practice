@@ -20,6 +20,10 @@ resource "aws_codebuild_project" "main" {
     type         = "LINUX_CONTAINER"
 
     environment_variable {
+      name  = "PORT"
+      value = "3000"
+    }
+    environment_variable {
       name  = "DATABASE_TYPE"
       value = "postgres"
     }
