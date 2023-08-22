@@ -33,7 +33,12 @@ data "aws_iam_policy_document" "code_build_pd" {
     effect = "Allow"
 
     actions = [
-      "ecr:GetAuthorizationToken"
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:CompleteLayerUpload",
+      "ecr:GetAuthorizationToken",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage",
+      "ecr:UploadLayerPart"
     ]
 
     resources = ["*"]
