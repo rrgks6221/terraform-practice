@@ -20,6 +20,7 @@ resource "aws_codebuild_project" "main" {
     type            = "LINUX_CONTAINER"
     privileged_mode = true
 
+    # application environment variable
     environment_variable {
       name  = "PORT"
       value = "3000"
@@ -51,6 +52,20 @@ resource "aws_codebuild_project" "main" {
     environment_variable {
       name  = "DATABASE_DATABASE"
       value = "init_db"
+    }
+
+    # codebuild environment variable
+    environment_variable {
+      name  = "REPOSITORY_URL"
+      value = var.ecr_repository_uri
+    }
+    environment_variable {
+      name  = "PROJECT_NAME"
+      value = var.app_name_dash
+    }
+    environment_variable {
+      name  = "REGION"
+      value = var.default_region
     }
   }
 

@@ -8,3 +8,11 @@ variable "s3" {
 variable "github_token" {
   type = string
 }
+
+variable "default_region" {
+  type = string
+}
+
+variable "ecr_repository_uri" {
+  type = string
+}

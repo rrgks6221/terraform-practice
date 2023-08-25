@@ -70,9 +70,11 @@ module "s3_main" {
 module "code_build" {
   source = "./modules/code_build"
 
-  app_name_dash = local.app_name_dash
-  s3            = module.s3_main.s3_main
-  github_token  = var.github_token
+  app_name_dash      = local.app_name_dash
+  s3                 = module.s3_main.s3_main
+  github_token       = var.github_token
+  default_region     = var.default_region
+  ecr_repository_uri = var.ecr_repository_uri
 }
 
 module "ecr_main" {
