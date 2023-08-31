@@ -31,7 +31,7 @@ resource "aws_codebuild_project" "main" {
 
     # codebuild environment variable
     environment_variable {
-      name  = "REPOSITORY_URL"
+      name  = "REPOSITORY_URI"
       value = var.ecr_repository_uri
     }
     environment_variable {
