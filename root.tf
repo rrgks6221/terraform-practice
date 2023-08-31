@@ -75,6 +75,7 @@ module "code_build" {
   github_token       = var.github_token
   default_region     = var.default_region
   ecr_repository_uri = var.ecr_repository_uri
+  app_env            = var.app_env
 }
 
 module "ecr_main" {

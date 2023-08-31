@@ -21,37 +21,12 @@ resource "aws_codebuild_project" "main" {
     privileged_mode = true
 
     # application environment variable
-    environment_variable {
-      name  = "PORT"
-      value = "3000"
-    }
-    environment_variable {
-      name  = "DATABASE_TYPE"
-      value = "postgres"
-    }
-    environment_variable {
-      name  = "DATABASE_HOST"
-      value = "terraform-practice.cupytdypyx7j.ap-northeast-2.rds.amazonaws.com"
-    }
-    environment_variable {
-      name  = "DATABASE_PORT"
-      value = "5432"
-    }
-    environment_variable {
-      name  = "DATABASE_SCHEMA"
-      value = "terraform_practice"
-    }
-    environment_variable {
-      name  = "DATABASE_USERNAME"
-      value = "seokho"
-    }
-    environment_variable {
-      name  = "DATABASE_PASSWORD"
-      value = "seokho_password"
-    }
-    environment_variable {
-      name  = "DATABASE_DATABASE"
-      value = "init_db"
+    dynamic "environment_variable" {
+      for_each = var.app_env
+      content {
+        name  = environment_variable.key
+        value = environment_variable.value
+      }
     }
 
     # codebuild environment variable

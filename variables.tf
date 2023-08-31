@@ -25,3 +25,7 @@ variable "default_region" {
 variable "ecr_repository_uri" {
   type = string
 }
+
+variable "app_env" {
+  type = map(string)
+}
