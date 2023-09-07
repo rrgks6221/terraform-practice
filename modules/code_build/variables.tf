@@ -20,3 +20,7 @@ variable "ecr_repository_uri" {
 variable "app_env" {
   type = map(string)
 }
+
+variable "docker_account" {
+  type = map(string)
+}

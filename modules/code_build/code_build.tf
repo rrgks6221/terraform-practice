@@ -29,6 +29,14 @@ resource "aws_codebuild_project" "main" {
       }
     }
 
+    dynamic "environment_variable" {
+      for_each = var.docker_account
+      content {
+        name  = environment_variable.key
+        value = environment_variable.value
+      }
+    }
+
     # codebuild environment variable
     environment_variable {
       name  = "REPOSITORY_URI"

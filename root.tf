@@ -76,6 +76,7 @@ module "code_build" {
   default_region     = var.default_region
   ecr_repository_uri = var.ecr_repository_uri
   app_env            = var.app_env
+  docker_account     = var.docker_account
 }
 
 module "ecr_main" {
